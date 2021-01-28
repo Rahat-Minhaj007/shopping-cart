@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="minusPhone" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phoneAmount" type="text" class="form-control text-center" value="1">
+                           <button id="plusPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$<span id="phonePrice">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="caseMinus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="caseAmount" type="text" class="form-control text-center" value="1">
+                           <button id="casePlus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$<span id="casePrice">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$<span id="subTotal">1278</span></h5>
+                        <h5>$ <span id="tax">0</span></h5>
+                        <h5>$<span id="total">1278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script>
+
+      // **********************************Phone Amount Plus***************************************
+
+      const plusBtn = document.getElementById('plusPhone');
+      plusBtn.addEventListener('click', function () {
+
+         // .............................increase phone amount.............................
+
+         const phoneAmount = document.getElementById("phoneAmount").value;
+         const phoneNumber = parseInt(phoneAmount);
+         const phoneAmountPlus = phoneNumber + 1;
+         document.getElementById("phoneAmount").value = phoneAmountPlus;
+
+         //......................... phone amount & per phone price multiply.......................
+
+         const phonePriceStable = 1219;
+         const phoneTotalPrice = phoneAmountPlus * phonePriceStable;
+         document.getElementById("phonePrice").innerText = phoneTotalPrice;
+
+         //............................... subtotal=subtotal +per phone price...............................
+
+         const subTotal = document.getElementById('subTotal').innerText;
+         const subTotalNum = parseInt(subTotal);
+         const subTotalNumFinal = subTotalNum + 1219;
+         document.getElementById('subTotal').innerText = subTotalNumFinal;
+
+         //............................... subtotal price assign in total price.................................
+
+         const total = document.getElementById('total').innerText;
+         const totalNum = parseInt(total);
+         document.getElementById('total').innerText = subTotalNumFinal;
+
+      })
+
+      //  **********************************************Phone Amount Minus*******************************************
+
+      const minusBtn = document.getElementById("minusPhone");
+      minusBtn.addEventListener('click', function () {
+
+         // .............................decrease phone amount.............................
+
+         const phoneAmount = document.getElementById("phoneAmount").value;
+         const phoneNumber = parseInt(phoneAmount);
+         const phoneAmountPlus = phoneNumber - 1;
+         document.getElementById("phoneAmount").value = phoneAmountPlus;
+
+         //......................... sub phone price after decrease the phone amount .......................
+
+         const phonePrice = document.getElementById("phonePrice").innerText;
+         const phoneAmountPrice = parseFloat(phonePrice);
+         const phonePriceMinus = phoneAmountPrice - 1219;
+         document.getElementById("phonePrice").innerText = phonePriceMinus;
+
+         //...............................subtotal after decrease phone amount...............................
+
+         const subTotal = document.getElementById('subTotal').innerText;
+         const subTotalNum = parseInt(subTotal);
+         const subTotalNumFinal = subTotalNum - 1219;
+         document.getElementById('subTotal').innerText = subTotalNumFinal;
+
+         //...............................total after decrease phone amount...............................
+
+         const total = document.getElementById('total').innerText;
+         const totalNum = parseInt(total);
+         document.getElementById('total').innerText = subTotalNumFinal;
+
+      })
+
+      //*******************************************case amount Plus*********************************************
+
+      const cPlusBtn = document.getElementById(
+         "casePlus");
+      cPlusBtn.addEventListener('click', function () {
+
+         // .............................increase case amount.............................
+
+         const caseAmount = document.getElementById("caseAmount").value;
+         const caseNumber = parseInt(caseAmount);
+         const caseAmountPlus = caseNumber + 1;
+         document.getElementById("caseAmount").value = caseAmountPlus;
+
+         //......................... case amount & per case price multiply.......................
+
+         const casePriceStable = 59;
+         const caseTotalPrice = caseAmountPlus * casePriceStable;
+         document.getElementById("casePrice").innerText = caseTotalPrice;
+
+         //............................... subtotal=subtotal +per case price...............................
+
+         const subTotal = document.getElementById('subTotal').innerText;
+         const subTotalNum = parseInt(subTotal);
+         const subTotalNumFinal = subTotalNum + 59;
+         document.getElementById('subTotal').innerText = subTotalNumFinal;
+
+         //............................... subtotal price assign in total price.................................
+
+         const total = document.getElementById('total').innerText;
+         const totalNum = parseInt(total);
+         document.getElementById('total').innerText = subTotalNumFinal;
+
+      })
+
+      //***********************************************case amount Minus********************************************
+
+      const cMinusBtn = document.getElementById(
+         "caseMinus");
+      cMinusBtn.addEventListener('click', function () {
+
+         // .............................decrease phone amount.............................
+
+         const caseAmount = document.getElementById("caseAmount").value;
+         const caseNumber = parseInt(caseAmount);
+         const caseAmountPlus = caseNumber - 1;
+         document.getElementById("caseAmount").value = caseAmountPlus;
+
+         //......................... sub case price after decrease the case amount .......................
+
+         const casePrice = document.getElementById("casePrice").innerText;
+         const caseAmountPrice = parseFloat(casePrice);
+         const casePriceMinus = caseAmountPrice - 59;
+         document.getElementById("casePrice").innerText = casePriceMinus;
+
+         //...............................subtotal after decrease case amount...............................
+
+         const subTotal = document.getElementById('subTotal').innerText;
+         const subTotalNum = parseInt(subTotal);
+         const subTotalNumFinal = subTotalNum - 59;
+         document.getElementById('subTotal').innerText = subTotalNumFinal;
+
+         //............................... subtotal price assign in total price.................................
+
+         const total = document.getElementById('total').innerText;
+         const totalNum = parseInt(total);
+         document.getElementById('total').innerText = subTotalNumFinal;
+      })
+
+   </script>
+
+</body>
+
+</html>
